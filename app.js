@@ -5,13 +5,18 @@ const jwt = require('jsonwebtoken');
 const router = require('./routes/router');
 const authentication = require('./auth/authentication');
 const cookieparser = require('cookie-parser');
-const bodyparser = require('body-parser')
+const bodyparser = require('body-parser');
+const cors = require("cors");
 
 const app = express();
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieparser());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(authentication);
 app.use(router);
 

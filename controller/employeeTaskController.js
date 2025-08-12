@@ -1,9 +1,10 @@
 const Employee = require('../model/employee');
 const Task = require('../model/task');
 exports.employeeTask = async (req,res,next)=>{
+    console.log("Employee task controller initiated",req.auth);
     if(req.auth){
     const email = req.email;
-    console.log("Email from request:", email);
+    // console.log("Email from request:", email);
     if(!email){
         return res.status(401).json({message: "Unauthorized"});
     }

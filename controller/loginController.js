@@ -5,7 +5,7 @@ exports.login = async (req, res) => {
     try{
         const {email,password} = req.body;
         const user = await User.findOne({email});
-        console.log(user,"Login initiated");
+        // console.log(user,"Login initiated");
         if(!user){
             return res.status(400).json({message:"User not found"});
         }
@@ -23,7 +23,8 @@ exports.login = async (req, res) => {
         });
          return res.status(200).json({
             message: "Login successful",
-            token // Optional if you also want to use it in localStorage/sessionStorage
+            customerId: user.id,
+            email: user.email
         });
     }
     catch(err){
