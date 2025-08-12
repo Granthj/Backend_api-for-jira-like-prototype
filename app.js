@@ -18,6 +18,9 @@ app.use(express.json());
 app.use(cookieparser());
 app.use(express.urlencoded({ extended: true }));
 app.use(authentication);
+app.get("/", (req, res) => {
+    res.send("Backend is working 🚀");
+});
 app.use(router);
 
 
