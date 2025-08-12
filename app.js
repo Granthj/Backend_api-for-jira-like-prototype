@@ -7,10 +7,11 @@ const authentication = require('./auth/authentication');
 const cookieparser = require('cookie-parser');
 const bodyparser = require('body-parser');
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: process.env.frontendUrl,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
@@ -25,7 +26,7 @@ app.use(router);
 
 
 app.listen(9000, () => {
-    mongoose.connect('mongodb+srv://root:8318383381@cluster0.nkubvfc.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+    mongoose.connect(process.env.dbUrl)
     .then(() => {
         console.log("Connected");
     })
