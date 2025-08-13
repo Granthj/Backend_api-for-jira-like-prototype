@@ -15,6 +15,10 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }));
+app.options("*", cors({
+    origin: process.env.frontendUrl,
+    credentials: true
+}));
 app.use(express.json());
 app.use(cookieparser());
 app.use(express.urlencoded({ extended: true }));
